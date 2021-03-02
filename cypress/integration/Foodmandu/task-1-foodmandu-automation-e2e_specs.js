@@ -24,14 +24,14 @@ describe("Foodmandu-Automation_login-search-add-logout", () => {
 	});
 	it("Add Food and Food Description in bag", () => {
 		cy.searchFood("momo");
-		cy.searchRestautant("Bota Simply Mo:Mo - Bhaktapur"); //Select Specific Food
+		cy.searchRestautant("Bota Simply Mo:Mo - Bhaktapur"); //Select Restaurant
 		cy.get("#Category17641 > :nth-child(1)")
 			.contains("Bota Regular")
 			.should("be.visible")
 			.wait(1000);
 		cy.get("ul.nav li").should("have.length", 112);
 
-		cy.addFood("Chicken Steam Mo:Mo");
+		cy.addFood("Chicken Steam Mo:Mo"); //Select Specific Food
 		cy.get(".col-md-12 > .small-title")
 			.contains("SPECIAL INSTRUCTIONS")
 			.should("be.visible");
@@ -40,8 +40,6 @@ describe("Foodmandu-Automation_login-search-add-logout", () => {
 			"Please Make it Extra Delicious and bring it on time. Thank you"
 		); //Add Description
 		cy.contains("Add to Bag").click({ force: true });
-
-		cy.get(".btn--add-to-cart").find("span").contains("Update Bag");
 	});
 	it("Should Logout from the system", () => {
 		cy.searchFood("momo");
